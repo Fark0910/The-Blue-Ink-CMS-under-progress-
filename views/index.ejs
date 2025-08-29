@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Admin login</title>
+</head>
+<body>
+   
+     
+
+     <!-- Login Form -->
+<video autoplay muted loop playsinline id="bg-video" >
+
+      <source src="/videos/overly.mp4" type="video/mp4">
+
+    </video>
+<div class="container is-flex is-flex-direction-column is-justify-content-center is-align-items-center" style="min-height: 100vh;">
+
+    <h1 class="title animate__animated animate__fadeInDown " style="color:whitesmoke">Admin</h1>
+    
+ 
+   <form class="box animate__animated animate__fadeInUp" style="height: 80vh;min-height: 300px;max-height:600px;width:80vw;min-width: 300px;max-width: 470px;background-color:rgba(245, 245, 245, 0.21);" method="post" action="/login">
+        <video autoplay muted loop playsinline class="form-video  animate__animated animate__fadeInUp" >
+      <source class="sor is-skeleton " src="/videos/blues.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+        <div class="field ">
+            <label class="label is-size-4 has-skeleton animate__animated animate__fadeInLeft" style="color:whitesmoke">Username</label>
+            <div class="control is-size-4 is-skeleton ">
+                <input class="input is-skeleton " style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter admin name" type="text" name="username" required/>
+            </div>
+        </div>
+
+        <div class="field ">
+            <label class="label is-size-4 has-skeleton animate__animated animate__fadeInLeft" style="color:whitesmoke">Password</label>
+            <div class="control is-size-4 is-skeleton">
+                <input class="input is-skeleton " style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter password" type="password" name="password" required/>
+            </div>
+        </div>
+
+        <button class="button is-clickable is-size-5 mt-5 lo_butt is-skeleton" style=" background-color: #52d1cb;color:whitesmoke;width:100%;">Sign in</button>
+       
+    </form>
+    
+    <% if (message && message.error.length > 0 ) { %>
+   
+        <% message.error.forEach(msg => { %>
+            <article class="message is-warning animate__animated animate__fadeInDown" style="position:absolute;z-index: 3;margin-bottom: 4rem;width: 80vw;min-width:200px;max-width:600px;opacity:0.9;">
+              <div class="message-header">
+                <p><%= msg %></p>
+                <button class="delete" aria-label="delete"></button>
+              </div>
+              <div class="message-body">
+                You are not registered Admin, please contact the Admin to get access.
+              </div>
+            </article>
+            <script>
+
+                    const deleteButton = document.querySelector(".delete");
+                    const art = document.querySelector(".message");
+                    setTimeout(()=>{
+                        message=""
+                        
+                        art.style.display = "none";
+
+                        
+                    },5000)
+                    deleteButton.addEventListener("click", function() {
+                        message=""
+                        art.style.display = "none";
+
+                        
+                    });
+                  
+              
+            </script>
+        <% }) %>
+    <% } %>
+     <% if (message && message.info.length > 0 ) { %>
+   
+        <% message.info.forEach(msg => { %>
+            <article class="message is-warning animate__animated animate__fadeInDown" style="position:absolute;z-index: 3;margin-bottom: 4rem;width: 80vw;min-width:200px;max-width:600px;opacity:0.9;">
+              <div class="message-header">
+                <p><%= msg %></p>
+                <button class="delete" aria-label="delete"></button>
+              </div>
+              <div class="message-body">
+                You are not registered Admin, please contact the Admin to get access.
+              </div>
+            </article>
+            <script>
+
+                    const delButton = document.querySelector(".delete");
+                    const ar = document.querySelector(".message");
+                    setTimeout(()=>{
+                        message=""
+                        
+                        ar.style.display = "none";
+
+                        
+                    },5000)
+                    delButton.addEventListener("click", function() {
+                        message=""
+                        ar.style.display = "none";
+
+                        
+                    });
+                  
+              
+            </script>
+        <% }) %>
+    <% } %>
+     <% if (message && message.success.length > 0 ) { %>
+   
+        <% message.success.forEach(msg => { %>
+            <article class="message is-warning animate__animated animate__fadeInDown" style="position:absolute;z-index: 3;margin-bottom: 4rem;width: 80vw;min-width:200px;max-width:600px;opacity:0.9;">
+              <div class="message-header">
+                <p><%= msg %></p>
+                <button class="delete" aria-label="delete"></button>
+              </div>
+              <div class="message-body">
+                Successfully logged out.
+              </div>
+            </article>
+            <script>
+
+                    const deleButton = document.querySelector(".delete");
+                    const arti = document.querySelector(".message");
+                    setTimeout(()=>{
+                        message=""
+                        
+                        arti.style.display = "none";
+
+                        
+                    },5000)
+                    deleButton.addEventListener("click", function() {
+                        message=""
+                        arti.style.display = "none";
+
+                        
+                    });
+                  
+              
+            </script>
+        <% }) %>
+    <% } %>
+    <span class="icon-text has-text-warning mt-3 is-size-4 animate__animated animate__fadeInUp">
+            <span class="icon ">
+                <i class="fas fa-user-graduate"></i>
+            </span>
+            <span class="">Student?<a class="is-size-5" href="https://the-blue-ink.vercel.app/">  Visit here</a></span>
+    </span>
+  
+</div>
+    
+<script>
+setTimeout(() => {
+  const butt = document.querySelector(".lo_butt");
+  const user= document.getElementsByClassName("label");
+  const user_in=document.getElementsByClassName("input");
+  const user_cont=document.getElementsByClassName("control");
+ // const tile=document.querySelector(".title")
+  //const form = document.querySelector(".box");
+  const sour= document.querySelector(".sor");
+  //const formVideo = document.querySelector(".form-video");
+  butt.classList.remove("is-skeleton");
+ 
+ //field[0].classList.remove("is-skeleton");
+ //field[1].classList.remove("is-skeleton");
+ user_in[0].classList.remove("is-skeleton");
+ user[0].classList.remove("has-skeleton");
+ user_cont[0].classList.remove("is-skeleton");
+ user_in[1].classList.remove("is-skeleton");
+ user[1].classList.remove("has-skeleton");
+ user_cont[1].classList.remove("is-skeleton");
+ //tile.classList.remove("is-skeleton");
+ //form.classList.remove("is-skeleton");
+ sour.classList.remove("is-skeleton");
+ //formVideo.classList.remove("is-skeleton");
+ 
+ 
+}, 5000);
+</script>
+    
+</body>
+
+</html>

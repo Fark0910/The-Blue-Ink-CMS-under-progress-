@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/crm.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Admin pannel</title>
+</head>
+<body>
+    <img id="bg-img" src="/images/sch.jpg" alt="">
+<nav class="navbar is-fixed-top is-transparent animate__animated animate__fadeInDown liquid-glass"  role="navigation" aria-label="main navigation" style="opacity:1;z-index: 3;">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://the-blue-ink.vercel.app/">
+       <img src="/images/new_Tbi.ico" alt="mytbi" id="img_1">
+</svg>
+
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start animate__animated animate__fadeInDown">
+      <a class="navbar-item" href="https://the-blue-ink.vercel.app/">
+        Home Access
+      </a>
+
+      <a class="navbar-item" href="https://blue-ink-vid.vercel.app/">
+        Video Access
+      </a>
+      <a class="navbar-item" href="https://the-blue-ink.vercel.app/loading">
+        Book Acess
+      </a>
+
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons ">
+          <a class="button is-info animate__animated animate__fadeInRight">
+            <strong style="color:white">Sign up</strong>
+          </a>
+          <a class="button is-danger animate__animated animate__fadeInLeft" href="/logout">
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container  is-flex is-flex-direction-column is-justify-content-center is-align-items-center" style="min-height: 100vh;margin-top: 10rem;">
+ <% if (message && message.success.length > 0) { %>
+   
+        <% message.success.forEach(msg => { %>
+            <article class="message is-success animate__animated animate__fadeInDown" style="position:absolute;z-index: 3;margin-bottom: 4rem;width: 80vw;min-width:200px;max-width:600px;opacity:0.9;">
+              <div class="message-header">
+                <p><%= msg %></p>
+                <button class="delete" aria-label="delete"></button>
+              </div>
+              <div class="message-body">
+                Successfully Login
+              </div>
+            </article>
+            <script>
+
+                    const deleteButton = document.querySelector(".delete");
+                    const art = document.querySelector(".message");
+                    setTimeout(()=>{
+                        message=""
+                        
+                        art.style.display = "none";
+
+                        
+                    },5000)
+                    deleteButton.addEventListener("click", function() {
+                        message=""
+                        art.style.display = "none";
+
+                        
+                    });
+                  
+              
+            </script>
+        <% }) %>
+    <% } %>
+
+    
+
+<div class="box boxer " > 
+  <!-- Add Button -->
+
+
+<!-- Modal -->
+<div id="my-modal" class="modal animate__animated animate__fadeInUp">
+  <div class="modal-background animate__animated animate__fadeInDown"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title animate__animated animate__fadeInRight">Add Video link</p>
+      <button class="delete" aria-label="close" id="modal-close"></button>
+    </header>
+    <section class="modal-card-body">
+        <form class="box animate__animated animate__fadeInUp" style="height:100%;min-height: 550px;max-height:600px;width:100%;min-width: 320px;max-width: 570px;background-color:rgba(245, 245, 245, 0.21);" method="post" action="/login">
+            <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Id</label>
+            <div class="control is-size-6  ">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter id" type="number" name="id" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Category</label>
+            <div class="control is-size-6">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter category" type="text" name="category" required/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Chapter name</label>
+            <div class="control is-size-6">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter chapter name" type="text" name="chapter" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Drive link</label>
+            <div class="control is-size-6  ">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter drive link" type="text" name="drive" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">class</label>
+            <div class="control is-size-6">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter class" type="number" name="class" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Exam</label>
+            <div class="control is-size-6">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter exam name" type="text" name="exam" required/>
+            </div>
+        </div>
+        
+       
+    </form>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button class="button is-success animate__animated animate__fadeInUp">Submit</button>
+        <button class="button animate__animated animate__fadeInUp" id="cancel-btn">Cancel</button>
+      </div>
+    </footer>
+  </div>
+</div>
+<!--update modal-->
+<div id="my-modal-2" class="modal animate__animated animate__fadeInUp">
+  <div class="modal-background animate__animated animate__fadeInDown"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title animate__animated animate__fadeInRight">Update Video link</p>
+      <button class="delete" aria-label="close" id="modal-close-1"></button>
+    </header>
+    <section class="modal-card-body">
+       <form class="box animate__animated animate__fadeInUp" style="height:100%;min-height: 550px;max-height:600px;width:100%;min-width: 320px;max-width: 570px;background-color:rgba(245, 245, 245, 0.21);" method="post" action="/login">
+               <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Id</label>
+            <div class="control is-size-6  ">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter id" type="number" name="id" required/>
+            </div>
+        
+       
+    </form>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button id="search-update-btn" class="button is-success animate__animated animate__fadeInUp">search</button>
+        <button class="button animate__animated animate__fadeInUp" id="cancel-btn-1">Cancel</button>
+      </div>
+    </footer>
+  </div>
+</div>
+<!--Update part2-->
+<div id="my-modal-4" class="modal animate__animated animate__fadeInUp">
+  <div class="modal-background animate__animated animate__fadeInDown"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title animate__animated animate__fadeInRight">Update Video link</p>
+      <button class="delete" aria-label="close" id="modal-close-3"></button>
+    </header>
+    <section class="modal-card-body">
+       <form id="update-details-form" class="box animate__animated animate__fadeInUp" style="height:100%;min-height: 550px;max-height:600px;width:100%;min-width: 320px;max-width: 570px;background-color:rgba(245, 245, 245, 0.21);" method="post" action="/login">
+              <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Id</label>
+            <div class="control is-size-6  ">
+                <input id="upd-id" class="input" style="opacity: 0. 8;background-color: #52d1cbae;" placeholder="enter id" type="number" name="id" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Category</label>
+            <div class="control is-size-6">
+                <input id="upd-category" class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter category" type="text" name="category" required/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Chapter name</label>
+            <div class="control is-size-6">
+                <input id="upd-chapter" class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter chapter name" type="text" name="chapter" required/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Drive link</label>
+            <div class="control is-size-6  ">
+                <input class="input" id="upd-drive" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter drive link" type="text" name="drive" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">class</label>
+            <div class="control is-size-6">
+                <input class="input" id="upd-class" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter class" type="number" name="class" required/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Exam</label>
+            <div class="control is-size-6">
+                <input id="upd-exam" class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter exam name" type="text" name="exam" required/>
+            </div>
+        </div>
+        
+        
+       
+    </form>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button class="button is-success animate__animated animate__fadeInUp">Update</button>
+        <button class="button animate__animated animate__fadeInUp" id="cancel-btn-3">Cancel</button>
+      </div>
+    </footer>
+  </div>
+</div>
+<!--Remove-->
+<div id="my-modal-3" class="modal animate__animated animate__fadeInUp">
+  <div class="modal-background animate__animated animate__fadeInDown"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title animate__animated animate__fadeInRight">Remove Video link</p>
+      <button class="delete" aria-label="close" id="modal-close-2"></button>
+    </header>
+    <section class="modal-card-body">
+       <form class="box animate__animated animate__fadeInUp" style="height:100%;min-height: 550px;max-height:600px;width:100%;min-width: 320px;max-width: 570px;background-color:rgba(245, 245, 245, 0.21);" method="post" action="/login">
+         
+
+            <div class="field">
+            <label class="label is-size-6 animate__animated animate__fadeInLeft" style="color:rgba(0, 0, 0, 0.678)">Id</label>
+            <div class="control is-size-6  ">
+                <input class="input" style="opacity: 0.8;background-color: #52d1cbae;" placeholder="enter id" type="number" name="id" required/>
+            </div>
+        </div>
+        
+        
+    </form>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons">
+        <button class="button is-success animate__animated animate__fadeInUp">Remove</button>
+        <button class="button animate__animated animate__fadeInUp" id="cancel-btn-2">Cancel</button>
+      </div>
+    </footer>
+  </div>
+</div>
+  
+    <%if(curruser){%>
+        <h1 class="title is-4 has-text-centered mt-3 animate__animated animate__fadeInDown">Hi Welcome back, <%=curruser%>!</h1>
+      
+    <%}else{%>
+         <h1 class="title is-1">Oops looks like owner doesnt exist!</h1>
+        
+    <%}%>
+
+   
+    <div class="columns"  style="height:100vh;min-height: 100px;max-height: 500px;">
+       <div class="column is-flex is-justify-content-center is-align-items-center  barcelona-1"  >
+        <figure class="image is-4by4 animate__animated animate__fadeInUp" style="min-height:200px;max-height:500px;height:70%;">
+            <img src="/images/crm.png" />
+        </figure>
+       </div>
+       <div class="column barcelona" >
+        <nav class="panel panel_mob animate__animated animate__fadeInUp" >
+  <p class="panel-heading" style="background-color: rgba(0, 0, 0, 0.5)" >Manage Videos</p>
+  <div class="panel-block" style="background-color:rgba(0, 0, 0, 0.5)">
+    <p class="control has-icons-left" >
+      <input class="input"  type="text" placeholder="Search" />
+      <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+    </p>
+  </div>
+  <p class="panel-tabs" style="background-color:rgba(0, 0, 0, 0.411)">
+    <a class="is-active animate__animated animate__fadeInDown" >All</a>
+    <a class="animate__animated animate__fadeInDown">Phy</a>
+    <a class="animate__animated animate__fadeInDown">Chem</a>
+    <a class="animate__animated animate__fadeInDown">Maths</a>
+   
+  </p>
+   <div id="video-panel"  style="max-height: 250px; overflow-y: auto;">
+ 
+  
+  </div>
+ 
+  <div class="panel-block" >
+    <button id="add-btn" class="button is-link is-outlined is-fullwidth animate__animated animate__fadeInUp" style="margin-right: 0.2rem;">
+      Add
+    </button>
+    <button id="upd-btn" class="button is-link is-outlined is-fullwidth animate__animated animate__fadeInUp" style="margin-right: 0.2rem;">
+      Update
+    </button>
+    <button id="rem-btn" class="button is-link is-outlined is-fullwidth animate__animated animate__fadeInUp" style="margin-right: 0.2rem;">
+      Remove
+    </button>
+  </div>
+</nav>
+        
+       </div>
+    </div>
+    
+</div> 
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+ 
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+ 
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+     
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+
+    function centerNavbarMenu() {
+      const navbarMenu = document.getElementById('navbarBasicExample');
+      const navbarEnd = document.querySelector('.navbar-end');
+      if (window.innerWidth <= 768) {
+        navbarMenu.classList.add('has-text-centered');
+        if (navbarEnd) navbarEnd.classList.add('has-text-centered');
+      } else {
+        navbarMenu.classList.remove('has-text-centered');
+        if (navbarEnd) navbarEnd.classList.remove('has-text-centered');
+      }
+    }
+
+    // Run on load and on resize
+    centerNavbarMenu();
+    window.addEventListener('resize', centerNavbarMenu);
+  
+  const modal = document.getElementById("my-modal");
+  const modal2 = document.getElementById("my-modal-3");
+  const modal1=document.getElementById("my-modal-2");
+  const addBtn = document.getElementById("add-btn");
+  const remBtn = document.getElementById("rem-btn");
+  const updBtn = document.getElementById("upd-btn");
+  const closeBtn = document.getElementById("modal-close");
+  const cancelBtn = document.getElementById("cancel-btn");
+  const closeBtn1 = document.getElementById("modal-close-1");
+  const cancelBtn1 = document.getElementById("cancel-btn-1");
+  const closeBtn2 = document.getElementById("modal-close-2");
+  const cancelBtn2 = document.getElementById("cancel-btn-2");
+  const closeBtn3 = document.getElementById("modal-close-3");
+  const cancelBtn3 = document.getElementById("cancel-btn-3");
+  const modal3 = document.getElementById("my-modal-4");
+  // Open modal on "Add" click
+  addBtn.addEventListener("click", () => {
+    modal.classList.add("is-active");
+    modal.querySelectorAll("input").forEach(input => input.value = "");
+  });
+
+  // Close modal on "X" or "Cancel" click
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("is-active");
+    modal.querySelectorAll("input").forEach(input => input.value = "");
+
+  });
+  cancelBtn.addEventListener("click", () => {
+    modal.classList.remove("is-active");
+    modal.querySelectorAll("input").forEach(input => input.value = "");
+
+    
+  });
+
+  // Optional: click outside to close
+  modal.querySelector(".modal-background").addEventListener("click", () => {
+    modal.classList.remove("is-active");
+  });
+//upd
+updBtn.addEventListener("click", () => {
+    modal1.classList.add("is-active");
+    modal1.querySelectorAll("input").forEach(input => input.value = "");
+  });
+
+  // Close modal on "X" or "Cancel" click
+  closeBtn1.addEventListener("click", () => {
+    modal1.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+  cancelBtn1.addEventListener("click", () => {
+    modal1.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+  closeBtn3.addEventListener("click", () => {
+    modal3.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+  cancelBtn3.addEventListener("click", () => {
+    modal3.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+
+  // Optional: click outside to close
+  modal1.querySelector(".modal-background").addEventListener("click", () => {
+    modal1.classList.remove("is-active");
+  });
+  //rem
+  remBtn.addEventListener("click", () => {
+    modal2.classList.add("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+
+  // Close modal on "X" or "Cancel" click
+  closeBtn2.addEventListener("click", () => {
+    modal2.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+  cancelBtn2.addEventListener("click", () => {
+    modal2.classList.remove("is-active");
+     modal3.querySelectorAll("input").forEach(input => input.value = "");
+  });
+
+  // Optional: click outside to close
+  modal2.querySelector(".modal-background").addEventListener("click", () => {
+    modal2.classList.remove("is-active");
+  });
+//CRUD
+ async function fetchVideos() {
+    res={data:[1,23,4]}
+    
+    try {
+      const res = await axios.get('/admin/display');
+      
+      const videos = res.data;
+      const panelDiv = document.getElementById('video-panel');
+     
+      panelDiv.innerHTML = ""; // Clear old
+      videos.forEach(v => {
+       
+        const a = document.createElement('a');
+        a.className = "panel-block";
+        a.href = v.drive_link;
+        a.target = "_blank";
+        a.innerHTML = `<span class="panel-icon "><i class="fas fa-book"></i></span> ${v.id}-${v.category}: ${v.chapter_name}`;
+        panelDiv.appendChild(a);
+      });
+    } catch (err) {
+      // Optionally show error
+    }
+  }
+
+
+  // Poll every 2 seconds
+  setInterval(fetchVideos, 2000);
+  // Initial load
+  fetchVideos();
+  //Updater
+  document.getElementById('search-update-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  openUpdateModal();
+});
+  async function openUpdateModal() {
+  // Id field ka value lo (modal-2 ke andar)
+  const id = document.querySelector('#my-modal-2 input[name="id"]').value;
+  if (!id) {
+    //alert("Please enter an ID!");
+    return;
+  }
+  console.log("plz na",typeof(id))
+  // Fetch video details from backend
+  try{
+    const lena=await axios.get(`/admin/${id}`)
+    const video = lena.data;
+    document.getElementById('upd-id').value = video.id;
+    document.getElementById('upd-category').value = video.category;
+    document.getElementById('upd-chapter').value = video.chapter_name;
+    document.getElementById('upd-drive').value = video.drive_link;
+    document.getElementById('upd-class').value = video.class || "";
+    document.getElementById('upd-exam').value = video.target_exam || "";
+
+      // ...agar aur fields hain toh yahan set karo...
+
+      // Modal-2 band karo, Modal-4 dikhao
+      document.getElementById('my-modal-2').classList.remove('is-active');
+      document.getElementById('my-modal-4').classList.add('is-active');
+
+  }catch(e){
+      //alert(`${e}`);
+    };
+}
+
+// Modal-4 ke "Update" button par click par
+document.querySelector('#my-modal-4 .button.is-success').addEventListener('click', async function(e) {
+  e.preventDefault();
+  // Saare updated fields lo
+  const id = document.getElementById('upd-id').value;
+  const category = document.getElementById('upd-category').value;
+  const chapter = document.getElementById('upd-chapter').value;
+  const drive = document.getElementById('upd-drive').value;
+  const claz = document.getElementById('upd-class').value;
+  const exam = document.querySelector('#my-modal-4 input[name="exam"]').value;
+  // ...aur fields agar hain toh...
+
+  // Query params bana lo
+  const params = new URLSearchParams({
+    id:id, category:category, chapter_name: chapter, drive_link: drive, claz: claz,target_exam:exam
+    // ...aur fields...
+  }).toString();
+
+  // /admin/update route ko GET se call karo (abhi ke liye)
+  await axios.get(`/admin/update?${params}`);
+  //alert("Update request sent!");
+  // Modal-4 band karo
+  document.getElementById('my-modal-4').classList.remove('is-active');
+});
+document.querySelector('#my-modal .button.is-success').addEventListener('click', async function(e) {
+  e.preventDefault();
+
+  // Get form fields from the Add modal
+  const id = document.querySelector('#my-modal input[name="id"]').value;
+  const category = document.querySelector('#my-modal input[name="category"]').value;
+  const chapter_name = document.querySelector('#my-modal input[name="chapter"]').value;
+  const drive_link = document.querySelector('#my-modal input[name="drive"]').value;
+  const claz = document.querySelector('#my-modal input[name="class"]').value;
+  const exam = document.querySelector('#my-modal input[name="exam"]').value;
+
+  // Simple validation (optional)
+  if (!id || !category || !chapter_name || !drive_link || !claz || !exam) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  try {
+    await axios.post('/admin/add', {
+      id, category, chapter_name, drive_link, claz, exam
+    });
+    //alert("Video added successfully!");
+    document.getElementById('my-modal').classList.remove('is-active');
+    // Optionally clear form fields here
+  } catch (err) {
+    //alert("Failed to add video!");
+  }
+});
+
+
+
+document.querySelector('#my-modal-3 .button.is-success').addEventListener('click', async function(e) {
+  e.preventDefault();
+  
+  const id = document.querySelector('#my-modal-3 input[name="id"]').value;
+  console.log("id",id)
+  if (!id) {
+    //alert("Please enter an ID!");
+    return;
+  }
+  try {
+    await axios.get(`/admin/remove/${encodeURIComponent(id)}`);
+    //alert("Video removed successfully!");
+    document.getElementById('my-modal-3').classList.remove('is-active');
+  } catch (err) {
+    //alert(`${err}`);
+  }
+});
+
+
+
+});
+
+
+</script>
+    
+</body>
+</html>

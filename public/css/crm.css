@@ -1,0 +1,131 @@
+#bg-img{
+  position: fixed;
+  top: 0;
+  opacity: 0.7;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit:fill;
+  background: #000;
+ 
+  
+}
+#img_1{
+  z-index: 10;
+  width: 5rem;
+  height: 8rem;
+
+
+
+}
+.panel_mob{
+  z-index: 10;
+  background-color:  rgba(245, 245, 245, 0.648);
+
+}
+.boxer{
+  height: 100vh;
+  min-height: 300px;
+  max-height:700px;
+  width:90vw;
+  min-width: 300px;
+  max-width: 1200px;
+ background: rgba(255, 255, 255, 0.642) !important;
+
+}
+.modal-card{
+  width:70vw;
+  min-width: 300px; 
+  max-width: 900px;
+  min-height: 300px;    
+  max-height: 700px;
+  height: 70vh;
+}
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+@media (max-width: 768px) {
+  .barcelona{
+     width: 100%;
+     height: 100%;
+  
+
+   
+     object-fit: cover;
+     border-radius: 10px;
+     display: block;
+     padding-top: 0rem;
+     margin: 0 0 1.5rem 0;
+   
+  
+  
+}
+.barcelona-1{
+  height: 65%;
+
+
+}
+#img_1{
+  width:4rem;
+  height: 10rem;
+  margin-left:0.5rem;
+
+}
+
+  .navbar-end.has-text-centered,
+    .navbar-end.has-text-centered .buttons {
+      justify-content: center !important;
+      display: flex !important;
+      width: 100%;
+    }
+    .navbar-end.has-text-centered .buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar-end.has-text-centered .button {
+      margin-bottom: 0.5rem;
+      width: 80% !important; 
+      min-width: 150px;
+      max-width: 350px;
+    }
+    .panel_mob{
+      margin-top:2rem;
+      
+    
+      background-color: whitesmoke;
+      
+
+    }
+    .boxer{
+      margin-top:-2rem;
+      margin-bottom: 5rem;
+      height: 80vh;
+     
+      min-height: 950px;
+      max-height:1000px;
+     
+     
+    }
+    .columns{
+      padding-bottom:2rem;
+    
+
+
+    }
+    .modal-card-body {
+  overflow-x: hidden !important;
+}
+ 
+  
+  }
+
+
