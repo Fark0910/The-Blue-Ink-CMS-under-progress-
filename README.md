@@ -8,7 +8,7 @@ Here’s a clean **README.md** draft 👇
 # The Blue Ink CMS
 
 A content management system (CMS) under development for **The Blue Ink** project.Its and open source platform where the reigistered admins can upload video content related to physics,chemistry, and maths.
-followed structured project management approach and code management it is built with **Bulma CSS Framework**, **EJS**, **TypeScript**, **Redis**, and session-based authentication with **Flash messages** everything from scratch.
+followed structured project management approach and code management,added important comments it is built with **Bulma CSS Framework**, **EJS**, **TypeScript**, **Redis**, and session-based authentication with **Flash messages** everything from scratch.
 
 ---
 
