@@ -29,30 +29,6 @@ followed structured project management approach and code management,added import
 
 ---
 
-## ⚙️ Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/the-blue-ink-cms.git
-
-# Navigate into the folder
-cd the-blue-ink-cms
-
-# Install dependencies
-npm install
-
-# Create environment file
-cp .env.example .env
-
-# Start Redis server (ensure Redis is running locally or via Docker)
-redis-server
-
-# Run the project in dev mode
-npm run dev
-
-
----
-
 ## 📌 Roadmap
 
 * [x] Setup project structure with TypeScript + Express
